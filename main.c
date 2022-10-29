@@ -1,18 +1,20 @@
 #include "main.h"
 
-void crypto_text(char* text_to_cryp, const int* locations[]);
 void find_locations_of_chars(const char* the_text, int* location_array);
+void crypto_text(char* text_to_cryp, const int* locations, size_t size_of_locations_arr);
 
 int main(void){
 
-    strcpy(lowercase_alp," abcdefghijklmnopqrstuvwxyz"); // 0 0.harf
+    strcpy(lowercase_alp," abcdefghijklmnopqrstuvwxyz"); // 0: 0.harf
     strcpy(uppercase_alp, " ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    char text[] = "furkan solmaz";
-    int harfAdresi[strlen(text)]; // kaçıncı harf olduklarını içeren array "a 1. harf olarak başlıyor."
+    char text[] = "acef";
+    size_t text_size = strlen(text);
+    int harfAdresi[text_size]; // kaçıncı harf olduklarını içeren array "a 1. harf olarak başlıyor."
     find_locations_of_chars(text, harfAdresi);
-    crypto_text(text, harfAdresi);
+    crypto_text(text, harfAdresi, text_size);
     puts(text);
     return 0;
+
 }
 
 void find_locations_of_chars(const char* the_text, int* location_array){
@@ -31,29 +33,18 @@ void find_locations_of_chars(const char* the_text, int* location_array){
     }
 }
 
-void crypto_text(char* text_to_cryp, const int* locations[]){
+void crypto_text(char* text_to_cryp, const int* locations, size_t size_of_locations_arr) {
 
-    int i = 0;
-    char next_char;
-    int size = sizeof(locations);
-    printf("%d",size);
-    char* ptr_current_char = text_to_cryp;
+    size_t size = size_of_locations_arr;
+    printf("harf sayisi: %lu\n", size);
 
-    //for(int j = 0; j<size; j++){
-     //   printf("%d", j);
-
-    //}
-
-    /*do{
-        printf("%d\n", i);
-        next_char = text_to_cryp[i+1]; // bir sonraki harf.
-        *ptr_current_char = lowercase_alp[i + 2]; // şuanki harfin 2 sonrasi içinn yer değiştirilmesi.
-
-        ptr_current_char++; // sonraki harfe geçiş
-        i++; // sonraki harfe geçiş
+    for (int j = 0; j < size; j++) {
+        text_to_cryp[j] = lowercase_alp[locations[j] + 2];
 
     }
-    while(next_char != '\0');*/
-
-    //puts(text_to_cryp);
 }
+
+
+
+
+
