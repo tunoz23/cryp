@@ -6,5 +6,5 @@
 #define CRYP_C_MAIN_H
 #include <stdio.h>
 #include <string.h>
-char alphabet[110];
+char alphabet[55];
 #endif //CRYP_C_MAIN_H

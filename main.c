@@ -7,7 +7,7 @@ int main(void){
 
     strcpy(alphabet, " abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"); // 0: 0.harf
 
-    char text[] = "Merve Nisa Kapan";
+    char text[] = "Burak Duzdar";
     size_t text_size = strlen(text);
     int harfAdresi[text_size]; // kaçıncı harf olduklarını içeren array "a 1. harf olarak başlıyor."
 
@@ -27,12 +27,12 @@ void find_locations_of_chars(const char* the_text, int* location_array){
     char current_char;
     for (int i = 0; i< strlen(the_text); i++){
         current_char = the_text[i];
-        for(int j = 0; i< strlen(alphabet); j++){
+        for(int j = 0; i< strlen(alphabet); j++) {
             //printf("%d", j);
-            if (current_char == alphabet[j]) {
+            if (current_char == alphabet[j]){
                 //printf("%c -- %c -- %d\n", current_char, alphabet[j], j);
                 location_array[i] = j;
-                break;
+            break;
             }
         }
     }
@@ -58,8 +58,6 @@ void decrypt_text(char* text_to_decrypt, int* locations,size_t size_of_locations
     for (int j = 0; j < size; j++) {
         text_to_decrypt[j] = alphabet[locations[j] - pull_size];
         locations[j] = locations [j] - pull_size;
-
-
     }
 }
 
