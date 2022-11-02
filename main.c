@@ -5,28 +5,22 @@ void crypt_text(char* text_to_cryp, int* locations, size_t size_of_locations_arr
 void decrypt_text(char* text_to_decrypt, int* locations,size_t size_of_locations_arr, int pull_size);
 int main(void){
 
-    strcpy(alphabet, " abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ ABCDEFGHIJKLMNOPQRSTUVWXYZ"); // 0: 0.harf
+    strcpy(alphabet, " abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"); // 0: 0.harf
 
     char text[] = "Merve Nisa Kapan";
     size_t text_size = strlen(text);
     int harfAdresi[text_size]; // kaçıncı harf olduklarını içeren array "a 1. harf olarak başlıyor."
 
     find_locations_of_chars(text, harfAdresi);//harf adresine, adresleri yazan func.
-    printf("Before: ");
-    for (int i=0; i<text_size; i++){
 
-        printf("%d ", harfAdresi[i]);
-
-    }
-    crypt_text(text, harfAdresi, text_size, 108);//Adreslere göre harfleri şifreleyen func.
-    printf("\n After: ");
-    for (int i=0; i<text_size; i++){
-        printf("%d ", harfAdresi[i]);
-    }
-    //puts(text);
+    crypt_text(text, harfAdresi, text_size, 28);//Adreslere göre harfleri şifreleyen func.
+    puts(text);
+    decrypt_text(text, harfAdresi, text_size, 28);
+    puts(text);
     return 0;
 
 }
+
 
 void find_locations_of_chars(const char* the_text, int* location_array){
     // loop through each char
@@ -46,7 +40,7 @@ void find_locations_of_chars(const char* the_text, int* location_array){
 
 void crypt_text(char* text_to_cryp, int* locations, size_t size_of_locations_arr, int pushSize) {
 
-    pushSize = pushSize%109;
+    pushSize = pushSize%27;
     size_t size = size_of_locations_arr;
     //printf("harf sayisi: %lu\n", size);
 
@@ -55,8 +49,9 @@ void crypt_text(char* text_to_cryp, int* locations, size_t size_of_locations_arr
         locations[j] = locations [j] + pushSize;
     }
 }
+//TODO: decrypt text fonksiyonuna crypt text fonksiyonundan farklı bi pull size girdiğimizde çalışmalı.
 void decrypt_text(char* text_to_decrypt, int* locations,size_t size_of_locations_arr, int pull_size){
-    pull_size = pull_size%109;
+    pull_size = pull_size%27;
     size_t size = size_of_locations_arr;
 
 
